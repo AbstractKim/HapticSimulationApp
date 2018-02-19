@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">HapticSimulation</string>
+  <string name="slot_number_1">1</string>
+  <string name="slot_number_2">2</string>
+  <string name="slot_number_3">3</string>
+  <string name="slot_number_4">4</string>
+</resources>
