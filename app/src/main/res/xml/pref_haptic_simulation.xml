@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="@string/pref_slot1_key"
+        android:title="@string/pref_slot1_label"
+        android:defaultValue="@string/pref_default_value" />
+    <ListPreference
+        android:key="@string/pref_slot2_key"
+        android:title="@string/pref_slot2_label"
+        android:defaultValue="@string/pref_default_value" />
+    <ListPreference
+        android:key="@string/pref_slot3_key"
+        android:title="@string/pref_slot3_label"
+        android:defaultValue="@string/pref_default_value" />
+    <ListPreference
+        android:key="@string/pref_slot4_key"
+        android:title="@string/pref_slot4_label"
+        android:defaultValue="@string/pref_default_value" />
+    <ListPreference
+        android:key="@string/pref_slot5_key"
+        android:title="@string/pref_slot5_label"
+        android:defaultValue="@string/pref_default_value" />
+    <ListPreference
+        android:key="@string/pref_slot6_key"
+        android:title="@string/pref_slot6_label"
+        android:defaultValue="@string/pref_default_value" />
+</PreferenceScreen>

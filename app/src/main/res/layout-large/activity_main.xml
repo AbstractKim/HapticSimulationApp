@@ -9,11 +9,11 @@
   <TextView
       android:id="@+id/textviewSlot2"
       android:layout_width="40dp"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="50dp"
+      android:layout_height="91dp"
+      android:layout_marginStart="200dp"
       android:layout_marginTop="40dp"
       android:text="@string/slot_number_2"
-      android:textSize="18sp"
+      android:textSize="70sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textviewSlot1" />
@@ -22,10 +22,10 @@
       android:id="@+id/textviewSlot3"
       android:layout_width="40dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="50dp"
+      android:layout_marginStart="200dp"
       android:layout_marginTop="40dp"
       android:text="@string/slot_number_3"
-      android:textSize="18sp"
+      android:textSize="70sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textviewSlot2" />
@@ -34,10 +34,10 @@
       android:id="@+id/textviewSlot4"
       android:layout_width="40dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="50dp"
+      android:layout_marginStart="200dp"
       android:layout_marginTop="40dp"
       android:text="@string/slot_number_4"
-      android:textSize="18sp"
+      android:textSize="70sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textviewSlot3" />
@@ -46,10 +46,10 @@
       android:id="@+id/textviewSlot1"
       android:layout_width="40dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="50dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginStart="200dp"
+      android:layout_marginTop="88dp"
       android:text="@string/slot_number_1"
-      android:textSize="18sp"
+      android:textSize="70sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -59,73 +59,74 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginTop="82dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot1"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
 
   <ImageView
       android:id="@+id/imageviewSlot2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginTop="23dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot2"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot1"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
 
   <ImageView
       android:id="@+id/imageviewSlot3"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginTop="23dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot3"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot2"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
 
   <ImageView
       android:id="@+id/imageviewSlot4"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginTop="23dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot4"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot3"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
 
   <SeekBar
       android:id="@+id/seekbarVolume"
-      style="@style/Widget.AppCompat.SeekBar.Discrete"
-      android:layout_width="269dp"
-      android:layout_height="14dp"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="150dp"
+      style="@style/Base.Widget.AppCompat.SeekBar.Discrete"
+      android:layout_width="453dp"
+      android:layout_height="24dp"
+      android:layout_marginStart="380dp"
+      android:layout_marginTop="320dp"
       android:background="@android:color/darker_gray"
       android:backgroundTint="@android:color/darker_gray"
       android:foregroundTintMode="src_over"
       android:max="10"
+      android:paddingTop="40dp"
       android:rotation="-90"
-      android:thumbTintMode="src_atop"
+      android:thumb="@android:drawable/btn_default"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <ImageButton
       android:id="@+id/imagebuttonJog"
-      android:layout_width="wrap_content"
+      android:layout_width="246dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="40dp"
-      android:layout_marginTop="50dp"
+      android:layout_marginTop="125dp"
       android:background="@android:color/transparent"
       app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_adjust_black_55dp" />
+      app:srcCompat="@drawable/ic_adjust_black_220dp" />
 
   <Switch
       android:id="@+id/switchSlot5And6"
-      android:layout_width="50dp"
-      android:layout_height="54dp"
-      android:layout_marginStart="40dp"
+      android:layout_width="171dp"
+      android:layout_height="93dp"
+      android:layout_marginStart="80dp"
       android:layout_marginTop="8dp"
       app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
       app:layout_constraintTop_toBottomOf="@+id/imagebuttonJog" />

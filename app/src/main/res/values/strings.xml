@@ -1,7 +1,26 @@
 <resources>
-  <string name="app_name">HapticSimulation</string>
-  <string name="slot_number_1">1</string>
-  <string name="slot_number_2">2</string>
-  <string name="slot_number_3">3</string>
-  <string name="slot_number_4">4</string>
+    <string name="app_name">HapticSimulation</string>
+    <string name="slot_number_1">1</string>
+    <string name="slot_number_2">2</string>
+    <string name="slot_number_3">3</string>
+    <string name="slot_number_4">4</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="pref_slot1_key">slot1</string>
+    <string name="pref_slot1_label">Slot 1</string>
+    <string name="pref_slot2_key">slot2</string>
+    <string name="pref_slot2_label">Slot 2</string>
+    <string name="pref_slot3_key">slot3</string>
+    <string name="pref_slot3_label">Slot 3</string>
+    <string name="pref_slot4_key">slot4</string>
+    <string name="pref_slot4_label">Slot 4</string>
+    <string name="pref_slot5_key">slot5</string>
+    <string name="pref_slot5_label">Slot 5</string>
+    <string name="pref_slot6_key">slot6</string>
+    <string name="pref_slot6_label">Slot 6</string>
+    <string name="pref_default_value">nothing</string>
+    <string name="pref_default_label">Nothing</string>
+    <string name="error_not_play">Sorry, could not play. The file might be not supported...</string>
+    <string name="error_not_selected">Sorry, slot is not selected. Please select a slot to play</string>
+    <string name="error_slot_not_assigned">Sorry, this slot  is not assigned any files. Please go setting and set a media file to slot</string>
 </resources>
