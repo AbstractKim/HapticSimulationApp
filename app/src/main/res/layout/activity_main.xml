@@ -56,43 +56,43 @@
 
   <ImageView
       android:id="@+id/imageviewSlot1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="35dp"
+      android:layout_height="36dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="40dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot1"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <ImageView
       android:id="@+id/imageviewSlot2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="37dp"
+      android:layout_height="33dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="40dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot2"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot1"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <ImageView
       android:id="@+id/imageviewSlot3"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="43dp"
+      android:layout_height="34dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="40dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot3"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot2"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <ImageView
       android:id="@+id/imageviewSlot4"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="43dp"
+      android:layout_height="32dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="40dp"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot4"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot3"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <SeekBar
       android:id="@+id/seekbarVolume"
@@ -112,14 +112,12 @@
 
   <ImageButton
       android:id="@+id/imagebuttonJog"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="40dp"
-      android:layout_marginTop="50dp"
+      android:layout_width="260dp"
+      android:layout_height="258dp"
       android:background="@android:color/transparent"
       app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_adjust_black_55dp" />
+      app:srcCompat="@drawable/jog_0" />
 
   <Switch
       android:id="@+id/switchSlot5And6"

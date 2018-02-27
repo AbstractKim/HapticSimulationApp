@@ -10,8 +10,8 @@
       android:id="@+id/textviewSlot2"
       android:layout_width="40dp"
       android:layout_height="91dp"
-      android:layout_marginStart="200dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginStart="120dp"
+      android:layout_marginTop="55dp"
       android:text="@string/slot_number_2"
       android:textSize="70sp"
       android:textStyle="bold"
@@ -22,8 +22,8 @@
       android:id="@+id/textviewSlot3"
       android:layout_width="40dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="200dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginStart="120dp"
+      android:layout_marginTop="55dp"
       android:text="@string/slot_number_3"
       android:textSize="70sp"
       android:textStyle="bold"
@@ -34,8 +34,8 @@
       android:id="@+id/textviewSlot4"
       android:layout_width="40dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="200dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginStart="120dp"
+      android:layout_marginTop="55dp"
       android:text="@string/slot_number_4"
       android:textSize="70sp"
       android:textStyle="bold"
@@ -46,8 +46,8 @@
       android:id="@+id/textviewSlot1"
       android:layout_width="40dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="200dp"
-      android:layout_marginTop="88dp"
+      android:layout_marginStart="120dp"
+      android:layout_marginTop="60dp"
       android:text="@string/slot_number_1"
       android:textSize="70sp"
       android:textStyle="bold"
@@ -58,45 +58,49 @@
       android:id="@+id/imageviewSlot1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="82dp"
+      android:layout_marginStart="30dp"
+      android:layout_marginTop="42dp"
+      android:contentDescription="TODO"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot1"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <ImageView
       android:id="@+id/imageviewSlot2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
+      android:layout_marginStart="30dp"
       android:layout_marginTop="23dp"
+      android:contentDescription="TODO"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot2"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot1"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <ImageView
       android:id="@+id/imageviewSlot3"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
+      android:layout_marginStart="30dp"
       android:layout_marginTop="23dp"
+      android:contentDescription="TODO"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot3"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot2"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <ImageView
       android:id="@+id/imageviewSlot4"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
+      android:layout_marginStart="30dp"
       android:layout_marginTop="23dp"
+      android:contentDescription="TODO"
       app:layout_constraintStart_toEndOf="@+id/textviewSlot4"
       app:layout_constraintTop_toBottomOf="@+id/imageviewSlot3"
-      app:srcCompat="@drawable/ic_play_circle_outline_black_110dp" />
+      app:srcCompat="@drawable/button_off" />
 
   <SeekBar
       android:id="@+id/seekbarVolume"
-      style="@style/Base.Widget.AppCompat.SeekBar.Discrete"
+      style="@android:style/Widget.Material.SeekBar.Discrete"
       android:layout_width="453dp"
       android:layout_height="24dp"
       android:layout_marginStart="380dp"
@@ -107,28 +111,62 @@
       android:max="10"
       android:paddingTop="40dp"
       android:rotation="-90"
-      android:thumb="@android:drawable/btn_default"
+      android:thumb="@android:drawable/btn_dialog"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <ImageButton
       android:id="@+id/imagebuttonJog"
-      android:layout_width="246dp"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="40dp"
-      android:layout_marginTop="125dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginTop="50dp"
       android:background="@android:color/transparent"
       app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_adjust_black_220dp" />
+      app:srcCompat="@drawable/jog_0" />
 
-  <Switch
-      android:id="@+id/switchSlot5And6"
-      android:layout_width="171dp"
-      android:layout_height="93dp"
-      android:layout_marginStart="80dp"
-      android:layout_marginTop="8dp"
-      app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
-      app:layout_constraintTop_toBottomOf="@+id/imagebuttonJog" />
+  <RadioGroup
+      android:id="@+id/toggle"
+      android:layout_width="200dp"
+      android:layout_height="80dp"
+      android:layout_marginStart="600dp"
+      android:layout_marginTop="29dp"
+      android:background="@drawable/pink_out_line"
+      android:checkedButton="@+id/radio_off"
+      android:orientation="horizontal"
+      app:layout_constraintStart_toEndOf="@+id/imageviewSlot3"
+      app:layout_constraintTop_toBottomOf="@+id/imagebuttonJog">
+
+    <RadioButton
+        android:id="@+id/radio_on"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/toggle_widget_background"
+        android:button="@null"
+        android:gravity="center"
+        android:text="ON"
+        android:textColor="@android:color/black" />
+
+    <RadioButton
+        android:id="@+id/radio_off"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/toggle_widget_background"
+        android:button="@null"
+        android:gravity="center"
+        android:text="OFF"
+        android:textColor="@android:color/black" />
+  </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

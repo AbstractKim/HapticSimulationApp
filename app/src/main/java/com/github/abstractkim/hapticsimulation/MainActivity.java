@@ -154,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
       for(ViewSlotEntry viewSlotEntry: viewSlotEntries){
           if(myViewSlotEntry == viewSlotEntry){
               viewSlotEntry.getImageView().setImageResource((isTablet())
-                      ? R.drawable.ic_playd_circle_filled_black_110dp : R.drawable.ic_playd_circle_filled_black_24dp );
+                      ? R.drawable.button_on : R.drawable.button_on );
           }else{
               viewSlotEntry.getImageView().setImageResource((isTablet())
-                      ? R.drawable.ic_play_circle_outline_black_110dp : R.drawable.ic_play_circle_outline_black_24dp );
+                      ? R.drawable.button_off : R.drawable.button_off );
           }
       }
     }
