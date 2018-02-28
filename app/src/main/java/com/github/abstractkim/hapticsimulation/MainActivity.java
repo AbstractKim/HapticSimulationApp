@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
@@ -25,18 +29,24 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.lukedeighton.wheelview.WheelView;
+import com.lukedeighton.wheelview.adapter.WheelArrayAdapter;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-  private static final int MY_PERMISSIONS_REQUEST_CODE = 100;
-    private static final String TAG = "MainActivity" ;
+   private static final int MY_PERMISSIONS_REQUEST_CODE = 100;
+   private static final int ITEM_COUNT = 8;
+   private static final String TAG = "MainActivity";
+   MediaManager mediaManager;
+   List<ViewSlotEntry> viewSlotEntries;
+   String currentSlotKey;
+   SeekBar seekBar;
 
-    MediaManager mediaManager;
-    List<ViewSlotEntry> viewSlotEntries;
-    String currentSlotKey;
 
-    SeekBar seekBar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -70,12 +80,43 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        /*
         findViewById(R.id.imagebuttonJog).setOnClickListener(view -> {
                 if(null != currentSlotKey)
                     playMedia(mediaManager.getIdFromSharedPreference(this, currentSlotKey));
                 else
                     Toast.makeText(this,getString(R.string.error_not_selected), Toast.LENGTH_LONG).show();
         });
+        */
+
+        final WheelView wheelView = (WheelView) findViewById(R.id.wheelview);
+        //create data for the adapter
+        List<Map.Entry<String, Integer>> entries = new ArrayList<Map.Entry<String, Integer>>(ITEM_COUNT);
+        for (int i = 0; i < ITEM_COUNT; i++) {
+            Map.Entry<String, Integer> entry = MaterialColor.random(this, "\\D*_500$");
+            entries.add(entry);
+        }
+        //populate the adapter, that knows how to draw each item (as you would do with a ListAdapter)
+        wheelView.setAdapter(new MaterialColorAdapter(entries));
+        //a listener for receiving a callback for when the item closest to the selection angle changes
+        wheelView.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectListener() {
+            @Override
+            public void onWheelItemSelected(WheelView parent, Drawable itemDrawable, int position) {
+                if(null != currentSlotKey)
+                    playMedia(mediaManager.getIdFromSharedPreference(MainActivity.this, currentSlotKey));
+                else
+                    Toast.makeText(MainActivity.this,getString(R.string.error_not_selected), Toast.LENGTH_LONG).show();
+                Log.d("PeterLuke", "" + position);
+            }
+        });
+
+        wheelView.setOnWheelItemClickListener(new WheelView.OnWheelItemClickListener() {
+            @Override
+            public void onWheelItemClick(WheelView parent, int position, boolean isSelected) {
+
+            }
+        });
+
 
         seekBar = (SeekBar)findViewById(R.id.seekbarVolume);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -244,4 +285,25 @@ public class MainActivity extends AppCompatActivity {
     }
     return super.onOptionsItemSelected(item);
   }
+
+    class MaterialColorAdapter extends WheelArrayAdapter<Map.Entry<String, Integer>> {
+        MaterialColorAdapter(List<Map.Entry<String, Integer>> entries) {
+            super(entries);
+        }
+
+        @Override
+        public Drawable getDrawable(int position) {
+            Drawable[] drawable = new Drawable[] {
+                    createOvalDrawable(getResources().getColor(android.R.color.transparent)),
+                    getResources().getDrawable((position == 0) ? R.drawable.ic_jog_dot : R.drawable.ic_empty)
+            };
+            return new LayerDrawable(drawable);
+        }
+
+        private Drawable createOvalDrawable(int color) {
+            ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
+            shapeDrawable.getPaint().setColor(color);
+            return shapeDrawable;
+        }
+    }
 }

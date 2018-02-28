@@ -110,14 +110,24 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-  <ImageButton
-      android:id="@+id/imagebuttonJog"
-      android:layout_width="260dp"
-      android:layout_height="258dp"
-      android:background="@android:color/transparent"
+  <com.lukedeighton.wheelview.WheelView
+      android:id="@+id/wheelview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:emptyItemColor="@color/green_900"
+      app:repeatItems="true"
+      app:rotatableWheelDrawable="false"
+      app:selectionAngle="90.0"
+      app:selectionColor="@android:color/transparent"
+      app:selectionPadding="4dp"
+      app:wheelColor="@color/grey_400"
+      app:wheelItemCount="8"
+      app:wheelItemRadius="20dp"
+      app:wheelPadding="65dp"
+      app:wheelRadius="120dp"
       app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/jog_0" />
+      app:wheelDrawable="@drawable/jog_0"/>
 
   <Switch
       android:id="@+id/switchSlot5And6"
@@ -126,6 +136,6 @@
       android:layout_marginStart="40dp"
       android:layout_marginTop="8dp"
       app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
-      app:layout_constraintTop_toBottomOf="@+id/imagebuttonJog" />
+      app:layout_constraintTop_toBottomOf="@+id/wheelview" />
 
 </android.support.constraint.ConstraintLayout>
