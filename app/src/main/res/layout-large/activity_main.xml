@@ -99,21 +99,17 @@
       app:srcCompat="@drawable/button_off" />
 
 
-
   <SeekBar
       android:id="@+id/seekbarVolume"
-      style="@android:style/Widget.Material.SeekBar.Discrete"
-      android:layout_width="453dp"
-      android:layout_height="24dp"
-      android:layout_marginStart="380dp"
+      android:layout_width="560dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="250dp"
       android:layout_marginTop="320dp"
-      android:background="@android:color/darker_gray"
-      android:backgroundTint="@android:color/darker_gray"
-      android:foregroundTintMode="src_over"
       android:max="10"
-      android:paddingTop="40dp"
+      android:progressDrawable="@drawable/seekbar_progressbar"
       android:rotation="-90"
-      android:thumb="@android:drawable/btn_dialog"
+      android:thumb="@drawable/thumb_gray_gradiant"
+      android:thumbTintMode="multiply"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
