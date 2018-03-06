@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HapticSimulation</string>
-    <string name="app_vserion">0.0.3</string>
+    <string name="app_vserion">0.0.4</string>
     <string name="slot_number_1">1</string>
     <string name="slot_number_2">2</string>
     <string name="slot_number_3">3</string>

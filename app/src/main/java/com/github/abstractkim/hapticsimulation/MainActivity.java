@@ -26,6 +26,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -43,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
    private static final String TAG = "MainActivity";
    MediaManager mediaManager;
    List<ViewSlotEntry> viewSlotEntries;
+   List<JogWheelButtonAndImage> jogWheelButtonAndImages;
    String currentSlotKey;
+   String currentSlotKeyForJog;
    SeekBar seekBar;
 
 
@@ -74,11 +78,35 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
                     return;
                 }
-                currentSlotKey = key;
+                currentSlotKey = currentSlotKeyForJog = key;
+
                 playMedia(id);
                 setImage(viewSlotEntry);
             });
         }
+
+        jogWheelButtonAndImages = Arrays.asList(
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_0), R.drawable.jog_0),
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_45), R.drawable.jog_45),
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_90), R.drawable.jog_90),
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_135), R.drawable.jog_135),
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_180), R.drawable.jog_180),
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_225), R.drawable.jog_225),
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_270), R.drawable.jog_270),
+                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_315), R.drawable.jog_315)
+        );
+
+        final ImageView imageViewForJog = findViewById(R.id.wheelview);
+        for(JogWheelButtonAndImage jogWheelButtonAndImage: jogWheelButtonAndImages)
+            jogWheelButtonAndImage.getImageButton().setOnClickListener(view -> {
+                imageViewForJog.setImageResource(jogWheelButtonAndImage.getImageResourceId());
+                if(currentSlotKeyForJog == null){
+                    Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Long id = mediaManager.getIdFromSharedPreference(this, currentSlotKeyForJog);
+                playMedia(id);
+        });
 
         /*
         findViewById(R.id.imagebuttonJog).setOnClickListener(view -> {
@@ -89,33 +117,6 @@ public class MainActivity extends AppCompatActivity {
         });
         */
 
-        final WheelView wheelView = (WheelView) findViewById(R.id.wheelview);
-        //create data for the adapter
-        List<Map.Entry<String, Integer>> entries = new ArrayList<Map.Entry<String, Integer>>(ITEM_COUNT);
-        for (int i = 0; i < ITEM_COUNT; i++) {
-            Map.Entry<String, Integer> entry = MaterialColor.random(this, "\\D*_500$");
-            entries.add(entry);
-        }
-        //populate the adapter, that knows how to draw each item (as you would do with a ListAdapter)
-        wheelView.setAdapter(new MaterialColorAdapter(entries));
-        //a listener for receiving a callback for when the item closest to the selection angle changes
-        wheelView.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectListener() {
-            @Override
-            public void onWheelItemSelected(WheelView parent, Drawable itemDrawable, int position) {
-                if(null != currentSlotKey)
-                    playMedia(mediaManager.getIdFromSharedPreference(MainActivity.this, currentSlotKey));
-                else
-                    Toast.makeText(MainActivity.this,getString(R.string.error_not_selected), Toast.LENGTH_LONG).show();
-                Log.d("PeterLuke", "" + position);
-            }
-        });
-
-        wheelView.setOnWheelItemClickListener(new WheelView.OnWheelItemClickListener() {
-            @Override
-            public void onWheelItemClick(WheelView parent, int position, boolean isSelected) {
-
-            }
-        });
 
 
         seekBar = (SeekBar)findViewById(R.id.seekbarVolume);
@@ -139,6 +140,45 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+        });
+
+        //switch - radio button
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if(R.id.radio_off == checkedId){
+                Long id = mediaManager.getIdFromSharedPreference(this, "slot5");
+                if(id == -1) {
+                    Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                currentSlotKey = "slot5";
+
+                playMedia(id);
+                findViewById(R.id.radio_off).setBackgroundResource(R.drawable.switch_off_off);
+                findViewById(R.id.radio_on).setBackgroundResource(R.drawable.switch_off_on);
+            }else if(R.id.radio_on == checkedId){
+                Long id = mediaManager.getIdFromSharedPreference(this, "slot6");
+                if(id == -1) {
+                    Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                currentSlotKey = "slot6";
+
+                playMedia(id);
+                findViewById(R.id.radio_off).setBackgroundResource(R.drawable.switch_on_off);
+                findViewById(R.id.radio_on).setBackgroundResource(R.drawable.switch_on_on);
+            }
+
+        });
+        RadioButton radioButtonOff = findViewById(R.id.radio_off);
+        radioButtonOff.setOnClickListener((view)-> {
+            Toast.makeText(MainActivity.this, "off", Toast.LENGTH_SHORT);
+            Log.d(TAG, "off");
+        });
+        RadioButton radioButtonOn = findViewById(R.id.radio_on);
+        radioButtonOn.setOnClickListener((view)-> {
+            Toast.makeText(MainActivity.this, "on", Toast.LENGTH_SHORT);
+            Log.d(TAG, "on");
         });
 
     }
@@ -285,25 +325,4 @@ public class MainActivity extends AppCompatActivity {
     }
     return super.onOptionsItemSelected(item);
   }
-
-    class MaterialColorAdapter extends WheelArrayAdapter<Map.Entry<String, Integer>> {
-        MaterialColorAdapter(List<Map.Entry<String, Integer>> entries) {
-            super(entries);
-        }
-
-        @Override
-        public Drawable getDrawable(int position) {
-            Drawable[] drawable = new Drawable[] {
-                    createOvalDrawable(getResources().getColor(android.R.color.transparent)),
-                    getResources().getDrawable((position == 0) ? R.drawable.ic_jog_dot : R.drawable.ic_empty)
-            };
-            return new LayerDrawable(drawable);
-        }
-
-        private Drawable createOvalDrawable(int color) {
-            ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
-            shapeDrawable.getPaint().setColor(color);
-            return shapeDrawable;
-        }
-    }
 }

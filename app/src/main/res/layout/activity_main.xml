@@ -108,32 +108,157 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-  <com.lukedeighton.wheelview.WheelView
+  <ImageView
       android:id="@+id/wheelview"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:emptyItemColor="@color/green_900"
-      app:repeatItems="true"
-      app:rotatableWheelDrawable="false"
-      app:selectionAngle="90.0"
-      app:selectionColor="@android:color/transparent"
-      app:selectionPadding="4dp"
-      app:wheelColor="@color/grey_400"
-      app:wheelItemCount="8"
-      app:wheelItemRadius="20dp"
-      app:wheelPadding="65dp"
-      app:wheelRadius="120dp"
+      android:layout_width="169dp"
+      android:layout_height="157dp"
+      android:layout_marginStart="35dp"
+      android:layout_marginTop="65dp"
       app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
       app:layout_constraintTop_toTopOf="parent"
-      app:wheelDrawable="@drawable/jog_0"/>
+      app:srcCompat="@drawable/jog_0" />
 
-  <Switch
-      android:id="@+id/switchSlot5And6"
-      android:layout_width="50dp"
-      android:layout_height="54dp"
-      android:layout_marginStart="40dp"
+  <RadioGroup
+      android:id="@+id/radio_group"
+      android:layout_width="120dp"
+      android:layout_height="50dp"
+      android:layout_marginStart="290dp"
+      android:background="@android:color/transparent"
+      android:checkedButton="@+id/radio_off"
+      android:orientation="horizontal"
+      app:layout_constraintStart_toEndOf="@+id/imageviewSlot3"
+      app:layout_constraintTop_toBottomOf="@+id/wheelview">
+
+    <RadioButton
+        android:id="@+id/radio_off"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/switch_off_off"
+        android:button="@null"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+
+    <RadioButton
+        android:id="@+id/radio_on"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/switch_off_on"
+        android:button="@null"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+  </RadioGroup>
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_0"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginStart="68dp"
       android:layout_marginTop="8dp"
-      app:layout_constraintStart_toEndOf="@+id/seekbarVolume"
-      app:layout_constraintTop_toBottomOf="@+id/wheelview" />
+      android:background="@drawable/ic_empty"
+      app:layout_constraintStart_toStartOf="@+id/wheelview"
+      app:layout_constraintTop_toTopOf="@+id/wheelview"
+      app:srcCompat="@drawable/ic_empty" />
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_45"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginEnd="24dp"
+      android:layout_marginTop="20dp"
+      android:background="@drawable/ic_empty"
+      app:layout_constraintEnd_toEndOf="@+id/wheelview"
+      app:layout_constraintTop_toTopOf="@+id/wheelview"
+      app:srcCompat="@drawable/ic_empty" />
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_90"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginTop="12dp"
+      android:background="@drawable/ic_empty"
+      app:layout_constraintEnd_toEndOf="@+id/wheelview"
+      app:layout_constraintTop_toBottomOf="@+id/imageButtonJog_45"
+      app:srcCompat="@drawable/ic_empty" />
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_135"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginBottom="24dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:background="@drawable/ic_empty"
+      app:layout_constraintBottom_toBottomOf="@+id/wheelview"
+      app:layout_constraintEnd_toEndOf="@+id/wheelview"
+      app:layout_constraintHorizontal_bias="0.886"
+      app:layout_constraintStart_toStartOf="@+id/wheelview"
+      app:srcCompat="@drawable/ic_empty" />
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_180"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginBottom="8dp"
+      android:layout_marginStart="68dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/ic_empty"
+      app:layout_constraintBottom_toBottomOf="@+id/wheelview"
+      app:layout_constraintStart_toStartOf="@+id/wheelview"
+      app:layout_constraintTop_toTopOf="@+id/imageButtonJog_0"
+      app:layout_constraintVertical_bias="1.0"
+      app:srcCompat="@drawable/ic_empty" />
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_225"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginBottom="24dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:background="@drawable/ic_empty"
+      app:layout_constraintBottom_toBottomOf="@+id/wheelview"
+      app:layout_constraintEnd_toEndOf="@+id/wheelview"
+      app:layout_constraintHorizontal_bias="0.243"
+      app:layout_constraintStart_toStartOf="@+id/wheelview"
+      app:srcCompat="@drawable/ic_empty" />
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_270"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="52dp"
+      android:background="@drawable/ic_empty"
+      app:layout_constraintEnd_toEndOf="@+id/wheelview"
+      app:layout_constraintHorizontal_bias="0.089"
+      app:layout_constraintStart_toStartOf="@+id/wheelview"
+      app:layout_constraintTop_toTopOf="@+id/imageButtonJog_0"
+      app:srcCompat="@drawable/ic_empty" />
+
+  <ImageButton
+      android:id="@+id/imageButtonJog_315"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="12dp"
+      android:background="@drawable/ic_empty"
+      app:layout_constraintEnd_toEndOf="@+id/wheelview"
+      app:layout_constraintHorizontal_bias="0.154"
+      app:layout_constraintStart_toStartOf="@+id/wheelview"
+      app:layout_constraintTop_toTopOf="@+id/imageButtonJog_0"
+      app:srcCompat="@drawable/ic_empty" />
 
 </android.support.constraint.ConstraintLayout>
