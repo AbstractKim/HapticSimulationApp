@@ -19,11 +19,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowInsets;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -85,28 +88,99 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        jogWheelButtonAndImages = Arrays.asList(
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_0), R.drawable.jog_0),
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_45), R.drawable.jog_45),
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_90), R.drawable.jog_90),
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_135), R.drawable.jog_135),
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_180), R.drawable.jog_180),
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_225), R.drawable.jog_225),
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_270), R.drawable.jog_270),
-                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_315), R.drawable.jog_315)
-        );
 
-        final ImageView imageViewForJog = findViewById(R.id.wheelview);
-        for(JogWheelButtonAndImage jogWheelButtonAndImage: jogWheelButtonAndImages)
-            jogWheelButtonAndImage.getImageButton().setOnClickListener(view -> {
-                imageViewForJog.setImageResource(jogWheelButtonAndImage.getImageResourceId());
-                if(currentSlotKeyForJog == null){
-                    Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
-                    return;
+//        jogWheelButtonAndImages = Arrays.asList(
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_0), R.drawable.jog_0, false),
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_45), R.drawable.jog_45, false),
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_90), R.drawable.jog_90, false),
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_135), R.drawable.jog_135,false),
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_180), R.drawable.jog_180,false),
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_225), R.drawable.jog_225,false),
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_270), R.drawable.jog_270,false),
+//                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_315), R.drawable.jog_315,false)
+//        );
+
+
+        JogWheelButtonAndImage.init();
+        StringBuilder degreesString = new StringBuilder("Degree:[");
+        for(Double degree: JogWheelButtonAndImage.degrees){
+            degreesString.append(degree).append(",");
+        }
+        StringBuilder radiansString = new StringBuilder("Radians:[");
+        for(Double radians: JogWheelButtonAndImage.radians){
+            radiansString.append(radians).append(",");
+        }
+        Log.d(TAG, degreesString.toString());
+        Log.d(TAG, radiansString.toString());
+
+        final ImageButton imageButtonForJog = findViewById(R.id.wheelview);
+        Log.d(TAG, "Height:" + imageButtonForJog.getHeight() + ", Width: " + imageButtonForJog.getWidth());
+        imageButtonForJog.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                Log.d(TAG, "Height:" + imageButtonForJog.getHeight() + ", Width: " + imageButtonForJog.getWidth());
+
+                int centerX = imageButtonForJog.getWidth() / 2;
+                int centerY = imageButtonForJog.getHeight() / 2;
+                int touchX = (int)motionEvent.getX();
+                int touchY = (int)motionEvent.getY();
+
+                Log.d(TAG, "Center(" + centerX  + ", " + centerY + ")");
+                Log.d(TAG, "Touch(" + touchX  + ", " + touchY + ")");
+
+                int deltaX = - (touchX - centerX);
+                int deltaY = -(touchY - centerY);
+
+                double radian = Math.atan2(deltaX, deltaY);
+                if (radian < 0)
+                    radian = Math.abs(radian);
+                else
+                    radian = 2 * Math.PI - radian;
+                Log.d(TAG, "Radian(" + radian + ")");
+
+                int index = JogWheelButtonAndImage.getIndex(radian);
+                Log.d(TAG, "Index(" + index + ")");
+
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        JogWheelButtonAndImage.setFocused(index);
+                        imageButtonForJog.setImageResource(JogWheelButtonAndImage.resourceIDs.get(index));
+                        if(currentSlotKeyForJog == null){
+                            Toast.makeText(MainActivity.this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+                            return false;
+                        }
+                        Long id = mediaManager.getIdFromSharedPreference(MainActivity.this, currentSlotKeyForJog);
+                        playMedia(id);
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        if(!JogWheelButtonAndImage.focused[index]){
+                            JogWheelButtonAndImage.setFocused(index);
+                            imageButtonForJog.setImageResource(JogWheelButtonAndImage.resourceIDs.get(index));
+                            if(currentSlotKeyForJog == null){
+                                Toast.makeText(MainActivity.this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+                                return false;
+                            }
+                            Long id_ = mediaManager.getIdFromSharedPreference(MainActivity.this, currentSlotKeyForJog);
+                            playMedia(id_);
+                        }
+                        break;
                 }
-                Long id = mediaManager.getIdFromSharedPreference(this, currentSlotKeyForJog);
-                playMedia(id);
+
+                return false;
+            }
         });
+
+
+//            jogWheelButtonAndImage.getImageButton().setOnClickListener(view -> {
+//                imageViewForJog.setImageResource(jogWheelButtonAndImage.getImageResourceId());
+//                if(currentSlotKeyForJog == null){
+//                    Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                Long id = mediaManager.getIdFromSharedPreference(this, currentSlotKeyForJog);
+//                playMedia(id);
+//        });
 
         /*
         findViewById(R.id.imagebuttonJog).setOnClickListener(view -> {
@@ -182,7 +256,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-        private void changeVolume(int index) {
+
+
+    private void changeVolume(int index) {
             mediaManager.setAudioStreamVolume(
                     (AudioManager)getSystemService(Context.AUDIO_SERVICE), index);
         }
