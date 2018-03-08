@@ -97,12 +97,17 @@
 
   <SeekBar
       android:id="@+id/seekbarVolume"
+      style="@style/Widget.AppCompat.SeekBar.Discrete"
       android:layout_width="269dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="100dp"
       android:layout_marginTop="130dp"
+      android:background="@color/grey_300"
       android:max="10"
+      android:outlineProvider="background"
+      android:progressBackgroundTintMode="multiply"
       android:progressDrawable="@drawable/seekbar_progressbar"
+      android:progressTintMode="multiply"
       android:rotation="-90"
       android:thumb="@drawable/thumb_gray_gradiant"
       android:thumbTintMode="multiply"
