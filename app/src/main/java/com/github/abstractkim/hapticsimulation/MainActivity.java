@@ -74,17 +74,18 @@ public class MainActivity extends AppCompatActivity {
         );
 
         for(ViewSlotEntry viewSlotEntry : viewSlotEntries){
-            viewSlotEntry.getImageView().setOnClickListener(view -> {
+            viewSlotEntry.getImageView().setOnTouchListener( (view, motionEvent ) -> {
                 String key = viewSlotEntry.getKey();
                 Long id = mediaManager.getIdFromSharedPreference(this, key);
                 if(id == -1) {
                     Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
-                    return;
+                    return false;
                 }
                 currentSlotKey = currentSlotKeyForJog = key;
 
                 playMedia(id);
                 setImage(viewSlotEntry);
+                return false;
             });
         }
 
