@@ -24,4 +24,13 @@
         android:key="@string/pref_slot6_key"
         android:title="@string/pref_slot6_label"
         android:defaultValue="@string/pref_default_value" />
+    <ListPreference
+        android:key="@string/pref_slot7_key"
+        android:title="@string/pref_slot7_label"
+        android:defaultValue="@string/pref_default_value" />
+    <ListPreference
+        android:key="@string/pref_slot8_key"
+        android:title="@string/pref_slot8_label"
+        android:defaultValue="@string/pref_default_value" />
+
 </PreferenceScreen>

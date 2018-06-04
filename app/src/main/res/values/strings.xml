@@ -19,6 +19,10 @@
     <string name="pref_slot5_label">ON</string>
     <string name="pref_slot6_key">slot6</string>
     <string name="pref_slot6_label">OFF</string>
+    <string name="pref_slot7_key">slot7</string>
+    <string name="pref_slot7_label">Hazard ON</string>
+    <string name="pref_slot8_key">slot8</string>
+    <string name="pref_slot8_label">Hazard OFF</string>
     <string name="pref_default_value">nothing</string>
     <string name="pref_default_label">Nothing</string>
     <string name="error_not_play">Sorry, could not play. The file might be not supported...</string>

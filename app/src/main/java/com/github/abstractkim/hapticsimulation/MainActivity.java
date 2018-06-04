@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
    String currentSlotKey;
    String currentSlotKeyForJog;
    SeekBar seekBar;
+   ImageView hazard;
+   boolean bHazard = true;
 
 
 
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 new ViewSlotEntry(findViewById(R.id.imageviewSlot3), getString(R.string.pref_slot3_key)),
                 new ViewSlotEntry(findViewById(R.id.imageviewSlot4), getString(R.string.pref_slot4_key))
         );
+        hazard = findViewById(R.id.imageViewSlot7);
 
         for(ViewSlotEntry viewSlotEntry : viewSlotEntries){
             viewSlotEntry.getImageView().setOnTouchListener( (view, motionEvent ) -> {
@@ -89,7 +92,30 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-
+        hazard.setOnTouchListener((view, motionEvent) -> {
+            if(bHazard){
+                Long id = mediaManager.getIdFromSharedPreference(this, getString(R.string.pref_slot7_key));
+                if(id == -1) {
+                    Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+                    return false;
+                }
+                currentSlotKey = currentSlotKeyForJog = getString(R.string.pref_slot7_key);
+                playMedia(id);
+                bHazard = false;
+                hazard.setImageResource(R.drawable.hazard_off);
+            }else{
+                Long id = mediaManager.getIdFromSharedPreference(this, getString(R.string.pref_slot8_key));
+                if(id == -1) {
+                    Toast.makeText(this, R.string.error_slot_not_assigned, Toast.LENGTH_LONG).show();
+                    return false;
+                }
+                currentSlotKey = currentSlotKeyForJog = getString(R.string.pref_slot8_key);
+                playMedia(id);
+                bHazard = true;
+                hazard.setImageResource(R.drawable.hazard_on);
+            }
+            return false;
+        });
 //        jogWheelButtonAndImages = Arrays.asList(
 //                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_0), R.drawable.jog_0, false),
 //                new JogWheelButtonAndImage(findViewById(R.id.imageButtonJog_45), R.drawable.jog_45, false),
